@@ -46,9 +46,166 @@
            //初始化弹出
             self.initPopup($(this));
         });
+
+        //关闭弹出
+        this.popupMask.click(function(){
+            $(this).fadeOut();
+            self.popupWin.fadeOut();
+
+        });
+         this.closeBtn.click(function(){
+            self.popupMask.fadeOut();
+            self.popumWin.fadeOut();
+         });
+         //绑定上下切换按钮 
+        this.flag = true; //防止连续点击时出错
+        this.nextBtn.hover(function(){
+                            if(!$(this).hasClass("disabled") && self.groupData.length>1){
+                                $(this).addClass("lightbox-next-btn-show");
+                            };
+
+                        },function(){
+                            if(!$(this).hasClass("disabled") && self.groupData.length>1){
+                                $(this).removeClass("lightbox-next-btn-show");
+                            };
+                        }).click(function(e){
+                            if(!$(this).hasClass("disabled") && self.flag){
+                                self.flag = false;
+                                e.stopPropagation();
+                                self.goto("next");
+                            }
+                        });
+        this.prevBtn.hover(function(){
+                            if(!$(this).hasClass("disabled") && self.groupData.length>1){
+                                $(this).addClass("lightbox-prev-btn-show");
+                            };
+                        },function(){
+                            if(!$(this).hasClass("disabled") && self.groupData.length>1){
+                                $(this).removeClass("lightbox-prev-btn-show");
+                            };
+                        }).click(function(e){
+                            if(!$(this).hasClass("disabled") && self.flag){
+                                self.flag = false; //动画未结束连续点击，就不让点下一次了
+                                e.stopPropagation();
+                                self.goto("prev");
+                            }
+                        });
+        this.prevBtn
         
     };
     LightBox.prototype = {
+        goto:function(dir){
+            if(dir === "next"){
+                //this.groupData
+                //this.index
+                //console.log("next");
+                this.index++;
+                if(this.index >= this.groupData.length-1){
+                    this.nextBtn.addClass("disabled").removeClass("lightbox-next-btn-show");
+                };
+                if(this.index != 0){
+                    this.prevBtn.removeClass("disabled");
+                };
+
+                var src = this.groupData[this.index].src;
+                this.loadPicSize(src);
+
+            }else if(dir === "prev"){
+                this.index--;
+                if(this.index <=0 ){
+                    this.prevBtn.addClass("disabled").removeClass("lightbox-prev-btn-show");
+                };
+                if(this.index != this.groupData.length-1){
+                    this.nextBtn.removeClass("disabled");
+                };
+                var src = this.groupData[this.index].src;
+                this.loadPicSize(src);
+                //console.log("prev");
+
+            };
+
+
+        },
+        loadPicSize:function(sourceSrc){
+            //console.log(sourceSrc);
+            var self = this;
+            //把上一次图片的宽高清空
+            self.popupPic.css({
+                width:"auto",
+                height:"auto"
+            }).hide();
+
+
+            this.preLoadImg(sourceSrc,function(){
+                //alert("图片加载完成");
+                self.popupPic.attr("src",sourceSrc);
+                var picWidth = self.popupPic.width(),
+                    picHeight = self.popupPic.height();
+
+                console.log(picWidth + ":"+ picHeight);
+
+                self.changePic(picWidth,picHeight);
+
+            });
+            
+        },
+        changePic:function(width,height){
+            var self = this,
+                winWidth = $(window).width(),
+                winHeight = $(window).height();
+
+            //如果图片的宽高大于浏览器视口的宽高比例，看下是否溢出
+            
+            var scale = Math.min(winWidth/(width+10),winHeight/(height+10),1);
+
+            width = width*scale;
+            height = height*scale;
+
+
+            this.picViewArea.animate({
+                                        width:width-10,
+                                        height:height-10
+                                    });
+
+
+            this.popupWin.animate({
+                                    width:width,
+                                    height:height,
+                                    marginLeft:-(width/2),
+                                    top:(winHeight-height)/2
+                                },function(){
+                                    self.popupPic.css({
+                                        width:width-10,
+                                        height:height-10
+                                    }).fadeIn();
+                                    self.picCaptionArea.fadeIn();
+                                    self.flag = true;
+                                });
+            //设置描述文字和当前索引
+            console.log(this.index);
+
+             this.captionText.text(this.groupData[this.index].caption);
+             this.currentIndex.text("当前索引：" + (this.index+1)+" of "+this.groupData.length);
+
+
+        },
+        //预加载图片
+        preLoadImg:function(src,callback){
+
+            var img = new Image();
+            if(!!window.ActiveXObject){
+                img.onreadystatechange = function(){
+                    if(this.readyState == "complete"){
+                        callback();
+                    };
+                };
+            }else{
+                img.onload = function(){
+                    callback();
+                };
+            };
+            img.src = src;
+        },
         showMaskAndPoupup:function(sourceSrc,currentId){
             //console.log(sourceSrc);
             var self = this;
@@ -78,19 +235,35 @@
                                 }).animate({
                                     top:(winHeight-viewHeight)/2
                                     },function(){
-                                        //
+                                        //加载图片
+                                        self.loadPicSize(sourceSrc);
                                 });
             //根据当前点击的元素id获取在当前组别里的索引
             //注册到当前类（LightBox）上去
             this.index = this.getIndexOf(currentId);
             //$(this).index();  不用jQuery自带index 的原因是：防止img标签被其他标签比如p隔开，获取不到正确的index，数组下并不是按img分类的。
-            console.log(this.index);
+            //console.log(this.index);
+            
+            var groupDataLength = this.groupData.length;
+            if (groupDataLength>1) {
+                if(this.index === 0){
+                    this.prevBtn.addClass("disabled");
+                    this.nextBtn.removeClass("disabled");
+                }else if(this.index === groupDataLength-1){
+                    this.nextBtn.addClass("disabled");
+                    this.prevBtn.removeClass("disabled");
+                }else{
+                    this.nextBtn.removeClass("disabled");
+                    this.prevBtn.removeClass("disabled");
+                }
+            };
             
         },
+        /*获取元素在一组数据中的索引*/
         getIndexOf:function(currentId){
             var index = 0;
             $(this.groupData).each(function(i){
-                index++;
+                index = i;
                 if(this.id === currentId){
                     return false;
                 }
@@ -131,7 +304,7 @@
         renderDOM:function(){
             var strDom = '<div class="lightbox-pic-view">'+
                             '<span class="lightbox-btn lightbox-prev-btn ">  </span>'+
-                            '<img class="lightbox-image" src="images/2-2.jpg" width="100%" alt="">'+
+                            '<img class="lightbox-image" src="images/1-2.jpg" >'+
                             '<span class="lightbox-btn lightbox-next-btn ">  </span>'+
                         '</div>'+ 
                         '<div class="lightbox-pic-caption">'+
