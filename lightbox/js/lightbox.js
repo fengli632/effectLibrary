@@ -1,7 +1,17 @@
 ;(function($){
     
-    var LightBox = function(){
+    var LightBox = function(settings){
         var self = this;
+
+        this.settings = {
+            speed:500,
+            maxWidth:900,
+            maxHeight:600,
+            maskOpacity:0.8
+        };
+
+        $.extend(this.settings,settings ||{})
+
         //创建遮罩层和弹出框
         this.popupMask = $('<div id="G-lightbox-mask">');
         this.popupWin = $('<div id="G-lightbox-popup">');
@@ -51,11 +61,12 @@
         this.popupMask.click(function(){
             $(this).fadeOut();
             self.popupWin.fadeOut();
-
+            self.clear = false;
         });
          this.closeBtn.click(function(){
             self.popupMask.fadeOut();
-            self.popumWin.fadeOut();
+            self.popupWin.fadeOut();
+            self.clear = false;
          });
          //绑定上下切换按钮 
         this.flag = true; //防止连续点击时出错
@@ -90,7 +101,27 @@
                                 self.goto("prev");
                             }
                         });
-        this.prevBtn
+        //绑定窗口调整事件
+        var timer = null;
+        var clear = false;
+        $(window).resize(function(){
+            if(self.clear){
+                window.clearTimeout(timer);
+                timer = window.setTimeout(function(){
+                    self.loadPicSize(self.groupData[self.index].src);
+                },500);
+            };
+        }).keyup(function(e){
+            var keyValue = e.which;
+            //console.log(keyValue);
+            if(self.clear){
+                if(keyValue == 38 || keyValue == 37){
+                    self.prevBtn.click();
+                }else if(keyValue == 40 || keyValue == 39){
+                    self.nextBtn.click();
+                };
+            };
+        });
         
     };
     LightBox.prototype = {
@@ -134,6 +165,7 @@
                 width:"auto",
                 height:"auto"
             }).hide();
+            this.picCaptionArea.hide();
 
 
             this.preLoadImg(sourceSrc,function(){
@@ -151,8 +183,11 @@
         },
         changePic:function(width,height){
             var self = this,
-                winWidth = $(window).width(),
+               winWidth = $(window).width(),
                 winHeight = $(window).height();
+
+                /*winWidth = self.settings.maxWidth;
+                winHeight = self.settings.maxHeight;*/
 
             //如果图片的宽高大于浏览器视口的宽高比例，看下是否溢出
             
@@ -165,7 +200,7 @@
             this.picViewArea.animate({
                                         width:width-10,
                                         height:height-10
-                                    });
+                                    },self.settings.speed);
 
 
             this.popupWin.animate({
@@ -173,13 +208,14 @@
                                     height:height,
                                     marginLeft:-(width/2),
                                     top:(winHeight-height)/2
-                                },function(){
+                                },self.settings.speed,function(){
                                     self.popupPic.css({
                                         width:width-10,
                                         height:height-10
                                     }).fadeIn();
                                     self.picCaptionArea.fadeIn();
                                     self.flag = true;
+                                    self.clear = true;
                                 });
             //设置描述文字和当前索引
             console.log(this.index);
@@ -213,10 +249,15 @@
             this.popupPic.hide();
             this.picCaptionArea.hide();
 
+            /*设置遮罩层透明度*/
+            this.popupMask.css({opacity:self.settings.maskOpacity});
             this.popupMask.fadeIn();
             //获取视口宽高
             var winWidth = $(window).width();
             var winHeight = $(window).height();
+
+            /*var  winWidth = self.settings.maxWidth;
+            var  winHeight = self.settings.maxHeight;*/
             
             //设置图片区域宽度高度
             this.picViewArea.css({
@@ -234,7 +275,7 @@
                                 top:-viewHeight
                                 }).animate({
                                     top:(winHeight-viewHeight)/2
-                                    },function(){
+                                    },self.settings.speed,function(){
                                         //加载图片
                                         self.loadPicSize(sourceSrc);
                                 });

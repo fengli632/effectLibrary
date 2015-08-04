@@ -25,6 +25,8 @@ body{font: 12px/1 '微软雅黑',tahoma,arial,'Hiragino Sans GB',宋体,sans-ser
     filter：alpha(opacity=50);
     z-index: 1000;
     display: none;
+    /* ie9以下半透明兼容性问题 */
+     background: url(../icon/opacity.png repeat left top);
 }
 #G-lightbox-popup{
     /* ie6不识别fixed */
@@ -51,7 +53,7 @@ body{font: 12px/1 '微软雅黑',tahoma,arial,'Hiragino Sans GB',宋体,sans-ser
     width: 30%;
     height: 100%;
     z-index: 1;
-    
+    background: url(../icon/transparent.png repeat left top);
 }
 #G-lightbox-popup .lightbox-pic-view .lightbox-prev-btn{
     left: 0;
@@ -81,6 +83,7 @@ body{font: 12px/1 '微软雅黑',tahoma,arial,'Hiragino Sans GB',宋体,sans-ser
     margin: 0 5px;
     /* 要放在后面 */
     margin-top: -60px;
+    background: url(../icon/opacity.png repeat left top);
 }
 #G-lightbox-popup .lightbox-pic-caption .lightbox-caption-area{
     padding: 5px;

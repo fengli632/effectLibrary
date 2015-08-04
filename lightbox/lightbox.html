@@ -74,7 +74,12 @@
     </div> -->
     <script>
     $(function(){
-        var lightbox = new LightBox();
+        var lightbox = new LightBox({
+            speed:500,
+            maxWidth:900,
+            maxHeight:600,
+            maskOpacity:0.6
+        });
     });
     </script>
 </body>
