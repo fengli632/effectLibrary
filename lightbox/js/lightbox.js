@@ -339,7 +339,6 @@
             });
 
             console.log(self.groupData);
-            
 
         },
         renderDOM:function(){
