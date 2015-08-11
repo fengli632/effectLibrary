@@ -1,0 +1,121 @@
+@charset "utf-8";
+@import "reset.css";
+
+/* tooltip.css - ToolTip设计样式, 2012 © yamoo9.com
+---------------------------------------------------------------- */
+
+/* ///////////////////////////////////////// 
+	=基本样式
+///////////////////////////////////////// */	
+body{
+
+	 padding: 150px; 
+	background: #2b2b2b url(../images/bg-title.jpg);
+}
+h1{
+	padding-bottom: 150px;
+	font-family: sans-serif;
+	color: #fff;
+}
+
+/* ///////////////////////////////////////// 
+	=.gallery-nav
+///////////////////////////////////////// */	
+
+.gallery-nav li{
+	float: left;
+	margin-right: 100px;
+}
+
+/* ///////////////////////////////////////// 
+	=.tooltip
+///////////////////////////////////////// */	
+a.tooltip{
+	position: relative;			/* 设置为相对定位，他是.tooltip-box位置的基准线 */
+	display: block;
+	width: 100px;
+	height: 100px;
+	border:5px solid #4b4b4b;
+	background: #fff no-repeat center;
+	background-size: cover;		/*使背景图片填充圆形框*/
+	
+	/* css圆角左上右下 */
+	border-radius: 55px;
+		-webkit-border-radius:55px;
+		-khtml-border-radius: 55px;
+		-moz-border-radius: 55px;
+
+	/* css渐入渐出 */
+	transition:all .4s ease-in .3s;
+		-moz-transition:all .4s ease-in .3s;
+		-o-transition:all .4s ease-in .3s;
+		-ms-transition:all .4s ease-in .3s;
+		-webkit-transition:all .4s ease-in .3s;
+}
+
+a.tooltip.photo1{
+	background-image: url(../images/zhuge.jpg);
+}
+a.tooltip.photo2{
+	background-image: url(../images/guanyu.jpg);
+}
+a.tooltip.photo3{
+	background-image: url(../images/zhaoyun.jpg);
+}
+a.tooltip:hover ,a.tooltip:focus{
+	border-color: #fff;
+}
+a.tooltip:hover .tooltip-box,a.tooltip:focus .tooltip-box{
+	opacity: 1;
+	 bottom: 90px; 
+}
+a.tooltip .tooltip-box{
+	opacity: 0;
+	width: 20em;
+	padding: .8em;
+	background: #111;
+	position: absolute;
+	bottom: 100px;		/*以低端为基准，向上移动100px*/
+	left:50%;			/*以左侧为基准，将悬浮提示向右移动50%*/
+	margin-left: -10.4em;/*设置左外边距为(20em+.8em)/2*/
+	border-radius: 15px 0px;/*设置左上与右下圆角*/
+	/* 渐入渐出 */
+	transition:all .4s ease-in .3s;
+		-moz-transition:all .4s ease-in .3s;
+		-o-transition:all .4s ease-in .3s;
+		-ms-transition:all .4s ease-in .3s;
+		-webkit-transition:all .4s ease-in .3s;
+}
+a.tooltip .tooltip-box:before{	/*设置下三角*/
+	content: '';
+	position: absolute;
+	bottom: -10px;
+	left: 120px;
+	border-top: 10px solid #111;
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+}
+
+a.tooltip .tooltip-title{
+	color: #fff;
+	font-size: 14px;
+	font-family: "楷体",sans-serif;
+}
+a.tooltip .tooltip-desc{
+	font-family: "楷体",sans-serif;
+	margin-bottom: 0;
+	font-size: 12px;
+	text-align: justify;
+	color: #bcbcbc;
+}
+
+/* ///////////////////////////////////////// 
+	=Global Classes
+///////////////////////////////////////// */
+.clearfix:after{
+	content: '';
+	display: block;
+	clear: both;
+}
+	.ie6 .clearfix{height: 1px;}
+	.ie7 .clearfix{min-height: 1px;}
