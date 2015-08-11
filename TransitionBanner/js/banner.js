@@ -1,0 +1,1 @@
+/* EX03 :: banner.js - Banner设计脚本- 2012©yamoo9.com */

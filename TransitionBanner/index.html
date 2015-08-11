@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8" />
+<title>CSS3 Banner Design - 动画Banner设计</title>
+<link rel="stylesheet" href="css/banner.css" />
+<link rel="stylesheet" type="text/css" href="http://api.mobilis.co.kr/webfonts/css/?fontface=NanumPenWeb">
+<script src="js/jquery.min.js"></script>
+<script src="js/banner_sound.js"></script>
+<script type="text/javascript">
+	(function($){
+		$(function(){
+			$('.banner').banner_sound('media/banner_sound.mp3');
+		});
+	})(jQuery);
+</script>
+</head>
+<body>
+	<a class="banner" href="http://www.baidu.com/">
+		<img class="banner-logo" src="images/banner-logo.png" alt="baidu" width="167" height="134">
+		<p class="banner-desc">
+
+			CSS3 Transition平滑渐变<br/>
+			WEB前端开发!！<br/> 
+			<strong>--Front End</strong>
+		</p>
+	</a>
+
+</body>
+</html>
