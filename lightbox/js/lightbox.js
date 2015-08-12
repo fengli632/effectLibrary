@@ -138,7 +138,7 @@
         if(this.isIE6){
             $(window).scroll(function(){
                 self.popupMask.css("top",$(window).scrollTop());
-                
+
             })
         }
         //alert(this.isIE6); 
@@ -331,6 +331,9 @@
                     this.nextBtn.removeClass("disabled");
                     this.prevBtn.removeClass("disabled");
                 }
+            }else{
+                this.prevBtn.addClass("disabled");
+                this.nextBtn.addClass("disabled");
             };
             
         },
