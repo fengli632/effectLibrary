@@ -28,6 +28,10 @@ body{font: 12px/1 '微软雅黑',tahoma,arial,'Hiragino Sans GB',宋体,sans-ser
     /* ie9以下半透明兼容性问题 */
      background: url(../icon/opacity.png repeat left top);
 }
+/* 匹配ie6 */
+*html #G-lightbox-mask{
+    position: absolute;
+}
 #G-lightbox-popup{
     /* ie6不识别fixed */
     position: fixed;
@@ -39,7 +43,9 @@ body{font: 12px/1 '微软雅黑',tahoma,arial,'Hiragino Sans GB',宋体,sans-ser
     z-index: 1001;
     display: none;
 }
-
+*html #G-lightbox-popup{
+    position: absolute;
+}
 #G-lightbox-popup .lightbox-pic-view{
     position: relative;
     border: 5px solid #fff;

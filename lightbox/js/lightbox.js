@@ -101,6 +101,8 @@
                                 self.goto("prev");
                             }
                         });
+        //判断是不是IE6
+        this.isIE6 = /MSIE 6.0/gi.test(window.navigator.userAgent);
         //绑定窗口调整事件
         var timer = null;
         var clear = false;
@@ -110,6 +112,15 @@
                 timer = window.setTimeout(function(){
                     self.loadPicSize(self.groupData[self.index].src);
                 },500);
+
+                if(isIE6){
+                    self.popupMask.css({
+                                        width: $(window).width(),
+                                        height: $(window).height()
+                                        });
+                };
+
+
             };
         }).keyup(function(e){
             var keyValue = e.which;
@@ -122,7 +133,15 @@
                 };
             };
         });
-        
+
+        //如果是ie6
+        if(this.isIE6){
+            $(window).scroll(function(){
+                self.popupMask.css("top",$(window).scrollTop());
+                
+            })
+        }
+        //alert(this.isIE6); 
     };
     LightBox.prototype = {
         goto:function(dir){
@@ -202,12 +221,17 @@
                                         height:height-10
                                     },self.settings.speed);
 
+            var top = (winHeight-height)/2;
+
+            if(this.isIE6){
+                top += $(window).scrollTop();
+            }
 
             this.popupWin.animate({
                                     width:width,
                                     height:height,
                                     marginLeft:-(width/2),
-                                    top:(winHeight-height)/2
+                                    top:top
                                 },self.settings.speed,function(){
                                     self.popupPic.css({
                                         width:width-10,
@@ -251,7 +275,7 @@
 
             /*设置遮罩层透明度*/
             this.popupMask.css({opacity:self.settings.maskOpacity});
-            this.popupMask.fadeIn();
+           
             //获取视口宽高
             var winWidth = $(window).width();
             var winHeight = $(window).height();
@@ -264,17 +288,27 @@
                                  width:winWidth/2,
                                  height:winHeight/2
                                 });
+            if(this.isIE6){
+                var scrollTop = $(window).scrollTop();
+                this.popupMask.css({
+                                    width:winWidth,
+                                    height:winHeight,
+                                    top: scrollTop
+                                    });
+            }
+            this.popupMask.fadeIn();
             this.popupWin.fadeIn();
 
             var viewHeight = winHeight/2+10;
+            var topAnimate = (winHeight-viewHeight)/2;
             //设置弹出框位置
             this.popupWin.css({
                                 width:winWidth/2+10,
                                 height:winHeight/2+10,
                                 marginLeft:-(winWidth/2+10)/2,
-                                top:-viewHeight
+                                top:(this.isIE6?-(viewHeight+scrollTop):-viewHeight)
                                 }).animate({
-                                    top:(winHeight-viewHeight)/2
+                                    top:(this.isIE6?(topAnimate+scrollTop):topAnimate)
                                     },self.settings.speed,function(){
                                         //加载图片
                                         self.loadPicSize(sourceSrc);
