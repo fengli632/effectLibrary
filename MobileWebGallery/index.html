@@ -3,8 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <title>移动端web相册</title>
+    <meta name="viewport" content="width=divice-width,initial-scale=1.0">
+    <link href="css/animate.css" rel="stylesheet" type="text/css">
+    <style>
+       blockquote, body, button, dd, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, hr, input, legend, li, ol, p, pre, td, textarea, th, ul,img{
+        margin: 0;
+        padding: 0;
+        }
+       body{background:black;overflow:hidden}
+       ul{list-style:none}
+        li{
+            float:left;
+            width: 100px;
+            height: 100px;
+            overflow: hidden;
+        }
+
+       </style>
 </head>
 <body>
-    
+    <ul id="container" class="ig-container">
+        <li><img src="image/1.jpg" alt=""></li>
+        <li><img src="image/2.jpg" alt=""></li>
+         <li><img src="image/1.jpg" alt=""></li>
+        <li><img src="image/2.jpg" alt=""></li>
+    </ul>
+   <script type="text/javascript" src="js/zepto.min.js"></script>
 </body>
 </html>
