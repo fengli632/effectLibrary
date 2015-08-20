@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas倒计时</title>
+</head>
+<body>
+    <canvas id="canvas" width="1024" height="768"  style="border:1px solid #aaa;display:block;margin:50px auto;">
+        当浏览器不支持canvas时
+    </canvas>
+
+<script type="text/javascript">
+    window.onload = function(){
+        //绘制直线
+        function drawLine(){
+            var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+            canvas.width = 1024;
+            canvas.height = 768;
+            context.beginPath();
+            context.moveTo(100, 100);
+            context.lineTo(700,700);
+            context.lineTo(100,700);
+            context.lineTo(100,100);
+            context.closePath();
+
+            //context.fillStyle = "rgb(2,100,30)";  //给多边形着色
+            //context.fill(); //填充着色
+
+            context.lineWidth = 5;  //线宽
+            context.strokeStyle = "#005588"; //线的样式
+
+            context.stroke(); //绘制线条
+
+            //画第二条线段
+            context.beginPath();
+            context.moveTo(200, 100);
+            context.lineTo(700,600);
+            context.closePath();
+            context.strokeStyle = "black";
+            context.stroke();
+        }
+        //绘制圆
+        function drawCircle(){
+            var canvas = document.getElementById("canvas");
+            canvas.width = 1024;
+            canvas.height = 768;
+            var context = canvas.getContext("2d");
+
+            context.lineWidth = 5;
+            context.strokeStyle = "#005588";
+            //context.arc(300,300,200,0,1.5*Math.PI); //第六个参数没写，默认顺时针
+            context.arc(300,300,200,0,0.5*Math.PI,true); //第六个参数写之后是逆时针
+            context.stroke(); //绘制弧线
+
+        }
+        //绘制多段弧线
+        function drawNCircle(){
+            var canvas = document.getElementById("canvas");
+            canvas.width = 1024;
+            canvas.height = 768;
+            var context = canvas.getContext("2d");
+
+            context.lineWidth = 5;
+            context.strokeStyle = "#005588";
+
+            //closePath()默认封闭路径
+            for (var i = 0; i < 10; i++) {
+                context.beginPath();
+                context.arc(50+100*i,60,40,0,2*Math.PI*(i+1)/10);
+                context.closePath();
+
+                context.stroke();
+            };
+
+            //不写closePath()的话不封闭路径
+            for (var i = 0; i < 10; i++) {
+                context.beginPath();
+                context.arc(50+100*i,180,40,0,2*Math.PI*(i+1)/10);
+
+                context.stroke();
+            };
+
+            //逆时针 closePath()封闭路径
+            for (var i = 0; i < 10; i++) {
+                context.beginPath();
+                context.arc(50+100*i,300,40,0,2*Math.PI*(i+1)/10,true);
+                context.closePath();
+                context.stroke();
+            };
+
+            //逆时针 不写closePath() 不会自动封闭
+            for(var i=0;i<10;i++){
+                context.beginPath();
+                context.arc(50+100*i,420,40,0,2*Math.PI*(i+1)/10,true);
+                context.stroke();
+            };
+
+            //顺时针,填充颜色
+            context.fillStyle = "#005511";
+            for(var i=0;i<10;i++){
+                context.beginPath();
+                context.arc(50+100*i,540,40,0,2*Math.PI*(i+1)/10);
+                context.closePath();
+                context.fill();
+            }
+
+
+        }
+        //drawLine();  //绘制直线
+        //drawCircle();   //绘制弧线
+        drawNCircle();  //绘制多段弧线
+        
+
+    }
+</script>
+
+</body>
+</html>
