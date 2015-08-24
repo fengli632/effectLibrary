@@ -4,7 +4,10 @@ var RADIUS = 8; //时间像素小球的半径
 var MARGIN_TOP = 60;
 var MARGIN_LEFT = 30;
 
-const endTime =  new Date(2015,7,25,19,30,00);// 倒计时截止日期 注意:js的月份是从0开始的 即0-11表示1到12月
+//const endTime =  new Date(2015,7,25,19,30,00);// 倒计时截止日期 注意:js的月份是从0开始的 即0-11表示1到12月
+//设置倒计时为一个小时时间
+var endTime = new Date();
+endTime.setTime(endTime.getTime() + 3600*1000);   //setTime()为1970-1-1至今的毫秒数
 var curShowTimeSeconds = 0;
 
 var balls = [];
