@@ -4,7 +4,7 @@ var RADIUS = 8; //时间像素小球的半径
 var MARGIN_TOP = 60;
 var MARGIN_LEFT = 30;
 
-const endTime =  new Date(2015,7,24,22,02,00);// 倒计时截止日期 注意:js的月份是从0开始的 即0-11表示1到12月
+const endTime =  new Date(2015,7,25,19,30,00);// 倒计时截止日期 注意:js的月份是从0开始的 即0-11表示1到12月
 var curShowTimeSeconds = 0;
 
 var balls = [];
@@ -12,6 +12,16 @@ const colors = ["#33B5E5","#0099CC","#AA66CC","#9933CC","#99CC00","#669900","#FF
 
 
 window.onload = function(){
+
+    //初始参数设置
+    WINDOW_WIDTH = document.body.clientWidth;
+    WINDOW_HEIGHT = document.body.clientHeight;
+    RADIUS = Math.round(WINDOW_WIDTH * 4/5 /108) - 1; //每一个数字占空间 15(RADIUS+1)
+    MARGIN_LEFT = Math.round(WINDOW_WIDTH / 10);    //整个倒计时数字画面占4/5  左边距占 1/10
+    MARGIN_TOP = Math.round(WINDOW_HEIGHT *1/5); 
+
+
+
     var canvas = document.getElementById("canvas");
     var context = canvas.getContext("2d"); //获取绘图的上下文环境
 
