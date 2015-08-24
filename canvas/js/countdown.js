@@ -4,7 +4,7 @@ var RADIUS = 8; //时间像素小球的半径
 var MARGIN_TOP = 60;
 var MARGIN_LEFT = 30;
 
-const endTime =  new Date(2015,7,25,19,30,00);// 倒计时截止日期 注意:js的月份是从0开始的 即0-11表示1到12月
+const endTime =  new Date(2015,7,24,22,02,00);// 倒计时截止日期 注意:js的月份是从0开始的 即0-11表示1到12月
 var curShowTimeSeconds = 0;
 
 var balls = [];
@@ -75,6 +75,8 @@ function update(){
     }
 
     updateBalls();
+
+    console.log(balls.length);
 }
 //更新绘制的彩色小球
 function updateBalls(){
@@ -84,9 +86,21 @@ function updateBalls(){
         balls[i].vy += balls[i].g;
 
         if(balls[i].y >= WINDOW_HEIGHT - RADIUS){
+            balls[i].y = WINDOW_HEIGHT - RADIUS;
             balls[i].vy = -balls[i].vy*0.75;
         }
     }
+
+    //对小球的数量进行控制,看小球是否还在画面内
+    var cnt = 0;
+    for(var i=0;i<balls.length;i++){
+        if(balls[i].x + RADIUS > 0 && balls[i].x - RADIUS < WINDOW_WIDTH)
+        balls[cnt++] = balls[i]; //如果小球在画面内,就把小球留在数组中
+    }
+    while(balls.length > Math.min(300,cnt)){
+        balls.pop();    //删掉末尾抛出画面的小球
+    }
+   
 }
 
 //绘制添加的彩色小球
