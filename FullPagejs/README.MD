@@ -3,7 +3,7 @@
 
 ---
 
-
+####介绍
 一个基于jQuery的插件,灵活方便，可以很方便轻松的做出全屏网站，主要功能有：
 
 
@@ -24,5 +24,8 @@ https://github.com/alvarotrigo/fullPage.js
 * 启维echo：www.kibey.com
 * cloudmagic:https://cloudmagic.com
 
+#### 使用方式
 
+使用cdnjs加载插件 https://cdnjs.com
+jquery.fullpage
 
