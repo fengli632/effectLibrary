@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FullPage.js实例</title>
+<link rel="stylesheet" type="text/css" href="css/jquery.fullPage.css">
+<style type="text/css">
+    body{
+        color:#fff;
+    }
+    .section {
+        text-align: center;
+        font-size: 36px;
+    }
+    /* .section1 {
+        background-color: #CC4037;
+    }
+    .section2 {
+        background-color: #348FD4;
+    }
+    .section3 {
+        background-color: #20B283;
+    }
+    .section4 {
+        background-color: #4ec1cd;
+    } */
+    .slide{
+        text-align: center;
+        font-size: 30px;
+    }
+</style>
+</head>
+<body>
+    <div id="fullpage">
+        <div class="section section1">
+            <h1>从前有座山</h1>
+        </div>
+        <div class="section section2">
+            <h1>山上有座庙</h1>
+        </div>
+        <div class="section section3">
+           <h1>庙里有个和尚……</h1>
+        </div>
+        <div class="section section4">
+            <div class="slide">Slide1</div>
+            <div class="slide">Slide2</div>
+            <div class="slide">Slide3</div>
+            <div class="slide">Slide4</div>
+        </div>
+    </div>
+<script src="js/jquery-2.1.4.min.js"></script>
+<script src="js/jquery.fullPage.js"></script>
+<script>
+    $(document).ready(function(){
+        $('#fullpage').fullpage({
+            //页面颜色
+            sectionsColor:['green','orange','gray','red'],
+
+            //幻灯片左右箭头
+            controlArrows:true,
+
+            //文字是否垂直居中
+            verticalCentered:true,
+
+            //字体大小是否随页面变大变小
+            resize:true,
+
+            //切换页面时的滚动速度，默认为700
+            scrollingSpeed:800,
+
+            //添加锚链接，地址栏链接
+            anchors:['page1','page2','page3','page4'],
+
+            //锁定锚链接
+            lockAnchors:false,
+        });
+    });
+</script>
+</body>
+</html>
