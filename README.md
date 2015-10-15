@@ -5,7 +5,7 @@
 
 *  [带遮罩层弹出框效果](http://fengli632.github.io/effectLibrary/popuplayer) （imooc-popuplayer）
 
-*  [Lightbox 图片展示页面](http://fengli632.github.io/effectLibrary/Lightbox) (imooc-Lightbox)
+*  [Lightbox 图片展示页面](http://fengli632.github.io/effectLibrary/Lightbox) (imooc-lightbox)
 
 *  [网页动态横幅广告](http://fengli632.github.io/effectLibrary/TransitionBanner)（TransitionBanner）
 
@@ -14,9 +14,9 @@
 *  [滑动导航条](http://fengli632.github.io/effectLibrary/LavaLamp)(Lava Lamp)
 
 *  Canvas绘图学习
-    * [canvastest](http://fengli632.github.io/effectLibrary/test.html)
-    * [碰撞小球测试](http://fengli632.github.io/effectLibrary/ball.html)
-    * [绚丽倒计时效果](http://fengli632.github.io/effectLibrary/countdown.html)
+    * [canvastest](http://fengli632.github.io/effectLibrary/canvas/test.html)
+    * [碰撞小球测试](http://fengli632.github.io/effectLibrary/canvas/ball.html)
+    * [绚丽倒计时效果](http://fengli632.github.io/effectLibrary/canvas/countdown.html)
     * [时钟](http://fengli632.github.io/effectLibrary/clock.html)
 
 *  移动web相册（imooc-MobileWebGallery）
