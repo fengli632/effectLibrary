@@ -17,7 +17,7 @@
     * [canvastest](http://fengli632.github.io/effectLibrary/canvas/test.html)
     * [碰撞小球测试](http://fengli632.github.io/effectLibrary/canvas/ball.html)
     * [绚丽倒计时效果](http://fengli632.github.io/effectLibrary/canvas/countdown.html)
-    * [时钟](http://fengli632.github.io/effectLibrary/clock.html)
+    * [时钟](http://fengli632.github.io/effectLibrary/canvas/clock.html)
 
 *  移动web相册（imooc-MobileWebGallery）
 
