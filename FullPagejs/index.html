@@ -28,9 +28,16 @@
         text-align: center;
         font-size: 30px;
     }
+    #header{
+        font-size: 50px;
+        position: fixed;
+        top: 0;
+        right: 200px;
+    }
 </style>
 </head>
 <body>
+<div id="header">Header</div>
     <div id="fullpage">
         <div class="section section1">
             <h1>从前有座山</h1>
@@ -73,6 +80,33 @@
 
             //锁定锚链接
             lockAnchors:false,
+
+            //使用css3显示动画效果
+            css3:false,
+
+            //到顶部后是否循环滚动到底部
+            loopTop:true,
+
+            //到底部后是否循环滚动到定部
+            loopBottom:true,
+
+            //幻灯片是否循环滚动
+            loopHorizontal:true,
+
+            //滚动方式
+            autoScrolling:true,
+
+            //是否包含滚动条
+            scrollBar:false,
+
+            //section顶部和底部的padding
+            //paddingTop:100,
+            //paddingBottom:100,
+
+            //固定元素
+            fixedElements:'#header'
+
+
         });
     });
 </script>
