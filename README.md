@@ -22,3 +22,7 @@
 *  移动web相册（imooc-MobileWebGallery）
 
 *  [FullPage.js全屏插件](http://fengli632.github.io/effectLibrary/FullPagejs)
+
+*  [动态导航](http://fengli632.github.io/effectLibrary/animateNav)(animateNav)
+
+    随滚动条移动,导航状态会变化,利用了jquery的scrollTop()获取滚动距离,在根据每一个section的offset().top来决定是否改变导航ul li的样式
