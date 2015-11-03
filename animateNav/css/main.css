@@ -1,0 +1,94 @@
+body ul {
+        font: 16px/1.5 Arial,"Microsoft Yahei",STHeiti,sans-serif;
+        margin: 0px;
+        padding: 0px;
+    }
+    body{
+        padding: 41px 0px;
+    }
+    a{
+        text-decoration:none;
+    }
+    #nav{
+        position: fixed;
+        top: 0px;
+        background-color: #FAFAFA;
+        height: 41px;
+        line-height: 41px;
+        border-width: 1px 1px 2px;
+        border-style: solid;
+        border-color: #DCDDDE #DCDDDE #4DB620;
+        -moz-border-top-colors: none;
+        -moz-border-right-colors: none;
+        -moz-border-bottom-colors: none;
+        -moz-border-left-colors: none;
+        border-image: none;
+        width: 100%;
+    }
+    #nav ul {
+        list-style: outside none none;
+        display: inline;
+        float: left;    
+        line-height: 41px;   
+    }
+    #nav ul li{
+        padding: 0px 10px;
+        display: inline;
+        float: left;
+        text-align: center;
+        cursor: pointer;
+        overflow: visible;
+        border-right: 1px solid #DCDDDE;
+        height: 41px;
+        line-height: 41px;
+
+
+        /* float: left;
+        width: 100px;
+        line-height: 50px;
+        border-right: 1px solid #ccc; */
+    }
+    #nav ul li a{
+        color: #333;
+        text-decoration: none;
+    }
+    #nav ul li a:hover{
+        
+        color:#FF9419; 
+        zoom:1;
+    }
+    #nav ul li.cur{
+        background-color: #42B312;     
+    }
+    #nav ul li.cur a{
+        color: #FFF;
+    }
+    .section{
+        height: 500px;
+        width: 100%;
+        text-align: center;
+        line-height: 500px;
+        /* font: 30px/1.5 Arial,"宋体","Microsoft Yahei",STHeiti,sans-serif;  */
+        font-size: 30px;
+        font-family: Arial,"Microsoft Yahei";
+        color: #fff;
+        overflow: hidden;
+    }
+    #section1{
+        background-color: #CC4037;
+    }
+    #section2{
+        background-color: #348FD4;
+    }
+    #section3{
+        background-color: #20B283;
+    }
+    #section4{
+        background-color: #4ec1cd;
+    }
+    #section5{
+        background-color: #FEB772;
+    }
+    #section6{
+        background-color: #BB9DE4;
+    }
